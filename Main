@@ -1,0 +1,52 @@
+from abc import ABC, abstractmethod
+
+#sebelum ISP
+class waktu_kerja (ABC):
+    @abstractmethod
+    def bekerja(self):
+        pass
+
+class waktu_kosong(ABC):
+    @abstractmethod
+    def istirahat(self):
+        pass
+
+class kegiatan(ABC):
+    @abstractmethod
+    def debugging(self):
+        pass
+
+#sesudah ISP
+class kuli (waktu_kerja,waktu_kosong):
+    def bekerja(self):
+        print("kuli sedang bekerja")
+
+    def istirahat(self):
+        print("waktu istirahat")
+
+class Developer (waktu_kerja,kegiatan,waktu_kosong):
+    def bekerja(self):
+        print("developer , ngoding in progress")
+    
+    def debugging(self):
+        print("Developer melakukan debugging")
+
+    def istirahat(self):
+        print("lunchtime")
+
+
+def main():
+    pekerja_satu = kuli()
+    pekerja_satu.bekerja()
+    pekerja_satu.istirahat()
+    
+    print("---")
+    
+    manusia_dua = Developer()
+    manusia_dua.bekerja()
+    manusia_dua.debugging()
+    manusia_dua.istirahat()
+
+
+if __name__ == "__main__":
+    main()
